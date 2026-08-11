@@ -1,78 +1,11 @@
-const fotos = [
-  {
-    src: "fotos/f1 (1).jpeg",
-    titulo: "Foto 1"
-  },
-  {
-    src: "fotos/f1 (2).jpeg",
-    titulo: "Foto 2"
-  },
-  {
-    src: "fotos/f1 (3).jpeg",
-    titulo: "Foto 3"
-   },
-  {
-    src: "fotos/f1 (4).jpeg",
-   },
-  {
-    src: "fotos/f1 (5).jpeg",
-   },
-  {
-    src: "fotos/f1 (6).jpeg",
-   },
-  {
-    src: "fotos/f1 (7).jpeg",
-     },
-  {
-    src: "fotos/f1 (8).jpeg",
-     },
-  {
-    src: "fotos/f1 (9).jpeg",
-     },
-  {
-    src: "fotos/f1 (10).jpeg",
-     },
-  {
-    src: "fotos/f1 (11).jpeg",
-     },
-  {
-    src: "fotos/f1 (12).jpeg",
-     },
-  {
-    src: "fotos/f1 (13).jpeg",
-     },
-  {
-    src: "fotos/f1 (14).jpeg",
-     },
-  {
-    src: "fotos/f1 (15).jpeg",
-     },
-  {
-    src: "fotos/f1 (16).jpeg",
-     },
-  {
-    src: "fotos/f1 (17).jpeg",
-     },
-  {
-    src: "fotos/f1 (18).jpeg",
-     },
-  {
-    src: "fotos/f1 (19).jpeg",
-     },
-  {
-    src: "fotos/f1 (20).jpeg",
-     },
-  {
-    src: "fotos/f1 (21).jpeg",
-     },
-  {
-    src: "fotos/f1 (22).jpeg",
-     },
-  {
-    src: "fotos/f1 (23).jpeg",
-  }
-    
-];
+const fotos = [];
+
+for (let i = 1; i <= 23; i++) {
+  fotos.push({
+    src: `fotos/f1 (${i}).jpeg`,
+    titulo: `Foto ${i}`
+  });
+}
 
 const galeria = document.getElementById("galeria");
 const modal = document.getElementById("modal");
@@ -87,6 +20,8 @@ let inicioToqueX = 0;
 let finToqueX = 0;
 
 function cargarGaleria() {
+  galeria.innerHTML = "";
+
   fotos.forEach((foto, index) => {
     const card = document.createElement("article");
     card.className = "card";
