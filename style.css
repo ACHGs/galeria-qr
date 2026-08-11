@@ -6,22 +6,26 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: #1f2937;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.9) 0 8%, transparent 9%),
-    radial-gradient(circle at 75% 15%, rgba(255, 255, 255, 0.85) 0 7%, transparent 8%),
-    linear-gradient(180deg, #9ddcff 0%, #dff6ff 45%, #fff7ed 100%);
   min-height: 100vh;
+
+  background:
+    radial-gradient(circle at 15% 18%, rgba(255, 255, 255, 0.95) 0 6%, transparent 7%),
+    radial-gradient(circle at 75% 12%, rgba(255, 255, 255, 0.9) 0 5%, transparent 6%),
+    radial-gradient(circle at 45% 38%, rgba(255, 255, 255, 0.75) 0 4%, transparent 5%),
+    linear-gradient(180deg, #8bd3ff 0%, #c7efff 42%, #fff7ed 100%);
 }
+
+/* ENCABEZADO */
 
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: 260px;
+  min-height: 280px;
   display: grid;
   place-items: center;
-  padding: 35px 18px;
+  padding: 40px 18px;
   text-align: center;
-  color: #164e63;
+  color: #075985;
 }
 
 .hero-content {
@@ -35,71 +39,78 @@ body {
   margin: 0 0 14px;
   padding: 8px 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.8);
   color: #0369a1;
   font-weight: bold;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 5px 14px rgba(14, 116, 144, 0.18);
 }
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(2.3rem, 10vw, 4.8rem);
+  font-size: clamp(2.4rem, 10vw, 5rem);
   color: #075985;
-  text-shadow: 0 3px 0 rgba(255, 255, 255, 0.7);
+  text-shadow: 0 4px 0 rgba(255, 255, 255, 0.65);
 }
 
 .hero p {
-  font-size: 1.05rem;
+  margin-top: 16px;
+  font-size: 1.08rem;
+  color: #164e63;
 }
+
+/* NUBES */
 
 .cloud {
   position: absolute;
   width: 170px;
-  height: 55px;
-  background: rgba(255, 255, 255, 0.85);
+  height: 58px;
+  background: rgba(255, 255, 255, 0.88);
   border-radius: 999px;
-  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.08));
+  z-index: 1;
+  filter: drop-shadow(0 10px 18px rgba(14, 116, 144, 0.12));
 }
 
 .cloud::before,
 .cloud::after {
   content: "";
   position: absolute;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   border-radius: 50%;
 }
 
 .cloud::before {
-  width: 70px;
-  height: 70px;
+  width: 72px;
+  height: 72px;
   left: 28px;
-  top: -32px;
+  top: -34px;
 }
 
 .cloud::after {
-  width: 90px;
-  height: 90px;
+  width: 92px;
+  height: 92px;
   right: 22px;
-  top: -45px;
+  top: -48px;
 }
 
 .cloud-1 {
-  left: 5%;
-  top: 50px;
+  left: 6%;
+  top: 70px;
 }
 
 .cloud-2 {
-  right: 8%;
-  top: 75px;
-  transform: scale(0.8);
+  right: 7%;
+  top: 85px;
+  transform: scale(0.82);
 }
 
 .cloud-3 {
-  left: 45%;
-  bottom: 25px;
+  left: 42%;
+  bottom: 35px;
   transform: scale(0.65);
   opacity: 0.75;
 }
+
+/* CONTENIDO */
 
 .container {
   width: min(1100px, 92%);
@@ -108,18 +119,19 @@ body {
 
 .intro {
   text-align: center;
-  margin: 15px auto 10px;
-  padding: 20px;
-  max-width: 680px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.65);
+  margin: 18px auto 10px;
+  padding: 22px 18px;
+  max-width: 700px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(8px);
-  box-shadow: 0 10px 28px rgba(14, 116, 144, 0.12);
+  box-shadow: 0 12px 30px rgba(14, 116, 144, 0.16);
 }
 
 .intro h2 {
   margin: 0 0 8px;
   color: #0e7490;
+  font-size: 1.6rem;
 }
 
 .intro p {
@@ -127,40 +139,45 @@ body {
   color: #475569;
 }
 
+/* GALERÍA */
+
 .galeria {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 18px;
-  padding: 24px 0 45px;
+  gap: 20px;
+  padding: 28px 0 50px;
 }
 
 .card {
   overflow: hidden;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: 0 12px 26px rgba(14, 116, 144, 0.18);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 14px 30px rgba(14, 116, 144, 0.18);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 35px rgba(14, 116, 144, 0.25);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 38px rgba(14, 116, 144, 0.26);
 }
 
 .card img {
   display: block;
   width: 100%;
-  height: 210px;
+  height: 220px;
   object-fit: cover;
 }
 
 .card p {
   margin: 0;
-  padding: 14px;
+  padding: 14px 16px;
   font-weight: bold;
   color: #075985;
+  background: rgba(255, 255, 255, 0.92);
 }
+
+/* MODAL / FOTO GRANDE */
 
 .modal {
   position: fixed;
@@ -169,7 +186,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 22px;
-  background: rgba(15, 23, 42, 0.86);
+  background: rgba(15, 23, 42, 0.88);
   z-index: 100;
 }
 
@@ -185,17 +202,19 @@ body {
 .modal-content img {
   max-width: 100%;
   max-height: 78vh;
-  border-radius: 22px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  border-radius: 24px;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.5);
   background: white;
 }
 
 .modal-content p {
-  margin: 12px 0 0;
+  margin: 14px 0 0;
   color: white;
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   font-weight: bold;
 }
+
+/* BOTONES DEL MODAL */
 
 .modal-close {
   position: absolute;
@@ -208,6 +227,7 @@ body {
   background: white;
   color: #0f172a;
   font-size: 32px;
+  line-height: 1;
   cursor: pointer;
 }
 
@@ -215,15 +235,16 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   color: #075985;
   font-size: 42px;
   line-height: 1;
   cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .nav-btn-left {
@@ -234,19 +255,66 @@ body {
   right: 18px;
 }
 
+.nav-btn:hover,
+.modal-close:hover {
+  background: #e0f2fe;
+}
+
+/* FOOTER */
+
 footer {
   text-align: center;
-  padding: 25px;
+  padding: 26px;
   color: #475569;
 }
 
+/* CELULAR */
+
 @media (max-width: 650px) {
+  .hero {
+    min-height: 235px;
+    padding: 32px 16px;
+  }
+
   .galeria {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
   }
 
   .card img {
-    height: 170px;
+    height: 175px;
+  }
+
+  .cloud {
+    width: 120px;
+    height: 42px;
+  }
+
+  .cloud::before {
+    width: 52px;
+    height: 52px;
+    top: -24px;
+  }
+
+  .cloud::after {
+    width: 66px;
+    height: 66px;
+    top: -34px;
+  }
+
+  .cloud-1 {
+    left: -10px;
+    top: 60px;
+  }
+
+  .cloud-2 {
+    right: -8px;
+    top: 85px;
+  }
+
+  .cloud-3 {
+    left: 38%;
+    bottom: 22px;
   }
 
   .nav-btn {
