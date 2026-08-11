@@ -1,5 +1,4 @@
 const TOTAL_MAXIMO_FOTOS = 100;
-
 const posiblesExtensiones = ["jpeg", "jpg", "png", "webp"];
 
 let fotos = [];
@@ -17,20 +16,6 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const musicaFondo = document.getElementById("musicaFondo");
 
-/*
-  Este código busca imágenes con nombres como:
-
-  fotos/f1 (1).jpeg
-  fotos/f1 (2).jpeg
-  fotos/f1 (3).jpeg
-  ...
-  fotos/f1 (100).jpeg
-
-  También prueba .jpg, .png y .webp.
-
-  Si una foto no existe, simplemente la ignora.
-*/
-
 function probarImagen(ruta) {
   return new Promise((resolve) => {
     const imagen = new Image();
@@ -43,7 +28,7 @@ function probarImagen(ruta) {
       resolve(null);
     };
 
-    imagen.src = ruta;
+    imagen.src = ruta + "?v=" + Date.now();
   });
 }
 
@@ -93,6 +78,10 @@ function cargarGaleria() {
 
     const titulo = document.createElement("p");
     titulo.textContent = foto.titulo;
+
+    img.onerror = () => {
+      card.remove();
+    };
 
     card.appendChild(img);
     card.appendChild(titulo);
