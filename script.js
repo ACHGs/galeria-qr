@@ -1,4 +1,4 @@
-const TOTAL_MAXIMO_FOTOS = 100;
+const TOTAL_MAXIMO_FOTOS = 23;
 const posiblesExtensiones = ["jpeg", "jpg", "png", "webp"];
 
 let fotos = [];
