@@ -13,13 +13,13 @@ const fotos = [
    },
   {
     src: "fotos/f1 (4).jpeg",
-     },
+   },
   {
     src: "fotos/f1 (5).jpeg",
-     },
+   },
   {
     src: "fotos/f1 (6).jpeg",
-     },
+   },
   {
     src: "fotos/f1 (7).jpeg",
      },
@@ -69,8 +69,8 @@ const fotos = [
     src: "fotos/f1 (22).jpeg",
      },
   {
-    src: "fotos/f1 (3).jpeg",
-  },
+    src: "fotos/f1 (23).jpeg",
+  }
     
 ];
 
