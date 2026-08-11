@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+}
+
+.hero {
+  min-height: 230px;
+  display: grid;
+  place-items: center;
+  padding: 30px 16px;
+  text-align: center;
+  background: linear-gradient(135deg, #202020, #4a4a4a);
+  color: white;
+}
+
+.hero__content {
+  max-width: 760px;
+}
+
+.badge {
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  font-weight: bold;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 8vw, 4rem);
+}
+
+.hero p {
+  font-size: 1.05rem;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.intro {
+  padding: 28px 0 10px;
+  text-align: center;
+}
+
+.intro h2 {
+  margin-bottom: 6px;
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 18px;
+  padding: 20px 0 42px;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.card img {
+  width: 100%;
+  height: 210px;
+  display: block;
+  object-fit: cover;
+}
+
+.card p {
+  margin: 0;
+  padding: 14px;
+  font-weight: bold;
+}
+
+.footer {
+  text-align: center;
+  padding: 22px;
+  color: #555;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.86);
+  z-index: 100;
+}
+
+.modal.is-open {
+  display: grid;
+}
+
+.modal__image {
+  max-width: min(95vw, 1100px);
+  max-height: 82vh;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.modal__close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  background: white;
+  color: #222;
+}
+
+@media (max-width: 600px) {
+  .card img {
+    height: 180px;
+  }
+
+  .hero {
+    min-height: 200px;
+  }
+}

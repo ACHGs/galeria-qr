@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galería QR</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <p class="badge">Escanea y mira las fotos</p>
+      <h1>Galería de fotos</h1>
+      <p>Bienvenido/a. Toca una foto para verla en grande.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <h2>Fotos disponibles</h2>
+      <p>Esta página está lista para subirla a GitHub Pages.</p>
+    </section>
+
+    <section id="galeria" class="galeria" aria-label="Galería de fotos"></section>
+  </main>
+
+  <div id="modal" class="modal" aria-hidden="true">
+    <button id="cerrarModal" class="modal__close" aria-label="Cerrar imagen">×</button>
+    <img id="imagenModal" class="modal__image" src="" alt="Foto ampliada" />
+  </div>
+
+  <footer class="footer">
+    <p>Galería creada para QR</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
