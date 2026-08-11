@@ -6,48 +6,177 @@
 
   <title>Galería QR</title>
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=4" />
+
+  <style>
+    .password-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.9) 0 8%, transparent 9%),
+        radial-gradient(circle at 75% 15%, rgba(255, 255, 255, 0.85) 0 7%, transparent 8%),
+        linear-gradient(180deg, #8bd3ff 0%, #c7efff 45%, #fff7ed 100%);
+    }
+
+    .password-card {
+      width: min(420px, 92vw);
+      padding: 28px;
+      border-radius: 28px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 18px 45px rgba(14, 116, 144, 0.25);
+      backdrop-filter: blur(10px);
+    }
+
+    .password-card h1 {
+      margin: 0 0 10px;
+      color: #075985;
+      font-size: 2rem;
+    }
+
+    .password-card p {
+      margin: 0 0 20px;
+      color: #475569;
+    }
+
+    .password-card input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #bae6fd;
+      border-radius: 16px;
+      font-size: 1rem;
+      outline: none;
+      text-align: center;
+    }
+
+    .password-card input:focus {
+      border-color: #0ea5e9;
+    }
+
+    .password-card button {
+      width: 100%;
+      margin-top: 14px;
+      padding: 14px 18px;
+      border: none;
+      border-radius: 16px;
+      background: #0284c7;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .password-card button:hover {
+      background: #0369a1;
+    }
+
+    .password-error {
+      min-height: 22px;
+      margin-top: 12px;
+      color: #dc2626;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
+
 <body>
 
-  <header class="hero">
-    <div class="cloud cloud-1"></div>
-    <div class="cloud cloud-2"></div>
-    <div class="cloud cloud-3"></div>
+  <section id="passwordScreen" class="password-screen">
+    <form id="passwordForm" class="password-card">
+      <h1>Galería privada</h1>
+      <p>Ingresa la contraseña para ver las fotos.</p>
 
-    <div class="hero-content">
-      <p class="badge">Galería QR</p>
-      <h1>Mis fotos</h1>
-      <p>Toca una imagen para verla en grande y desliza para cambiar.</p>
+      <input
+        id="passwordInput"
+        type="password"
+        placeholder="Contraseña"
+        autocomplete="off"
+      />
+
+      <button type="submit">Entrar</button>
+
+      <div id="passwordError" class="password-error"></div>
+    </form>
+  </section>
+
+  <div id="contenidoPagina" class="hidden">
+
+    <header class="hero">
+      <div class="cloud cloud-1"></div>
+      <div class="cloud cloud-2"></div>
+      <div class="cloud cloud-3"></div>
+
+      <div class="hero-content">
+        <p class="badge">Galería QR</p>
+        <h1>Mis fotos</h1>
+        <p>Toca una imagen para verla en grande y desliza para cambiar.</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="intro">
+        <h2>Fotos disponibles</h2>
+        <p>Selecciona una foto para abrir la galería.</p>
+      </section>
+
+      <section id="galeria" class="galeria"></section>
+    </main>
+
+    <div id="modal" class="modal">
+      <button id="cerrarModal" class="modal-close">×</button>
+
+      <button id="prevBtn" class="nav-btn nav-btn-left">‹</button>
+
+      <div class="modal-content">
+        <img id="imagenModal" src="" alt="Foto ampliada" />
+        <p id="tituloModal"></p>
+      </div>
+
+      <button id="nextBtn" class="nav-btn nav-btn-right">›</button>
     </div>
-  </header>
 
-  <main class="container">
-    <section class="intro">
-      <h2>Fotos disponibles</h2>
-      <p>Selecciona una foto para abrir la galería.</p>
-    </section>
+    <footer>
+      <p>Galería creada para escanear con QR</p>
+    </footer>
 
-    <section id="galeria" class="galeria"></section>
-  </main>
-
-  <div id="modal" class="modal">
-    <button id="cerrarModal" class="modal-close">×</button>
-
-    <button id="prevBtn" class="nav-btn nav-btn-left">‹</button>
-
-    <div class="modal-content">
-      <img id="imagenModal" src="" alt="Foto ampliada" />
-      <p id="tituloModal"></p>
-    </div>
-
-    <button id="nextBtn" class="nav-btn nav-btn-right">›</button>
   </div>
 
-  <footer>
-    <p>Galería creada para escanear con QR</p>
-  </footer>
+  <audio id="musicaFondo" src="musica/cancion.mp3" loop></audio>
 
-  <script src="script.js"></script>
+  <script>
+    const CLAVE_CORRECTA = "1234";
+
+    const passwordScreen = document.getElementById("passwordScreen");
+    const passwordForm = document.getElementById("passwordForm");
+    const passwordInput = document.getElementById("passwordInput");
+    const passwordError = document.getElementById("passwordError");
+    const contenidoPagina = document.getElementById("contenidoPagina");
+
+    passwordForm.addEventListener("submit", function(evento) {
+      evento.preventDefault();
+
+      const claveIngresada = passwordInput.value.trim();
+
+      if (claveIngresada === CLAVE_CORRECTA) {
+        passwordScreen.classList.add("hidden");
+        contenidoPagina.classList.remove("hidden");
+      } else {
+        passwordError.textContent = "Contraseña incorrecta";
+        passwordInput.value = "";
+        passwordInput.focus();
+      }
+    });
+  </script>
+
+  <script src="script.js?v=4"></script>
 </body>
 </html>
