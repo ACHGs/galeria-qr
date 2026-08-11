@@ -1,11 +1,12 @@
-const fotos = [];
+const TOTAL_MAXIMO_FOTOS = 100;
 
-for (let i = 1; i <= 23; i++) {
-  fotos.push({
-    src: `fotos/f1 (${i}).jpeg`,
-    titulo: `Foto ${i}`
-  });
-}
+const posiblesExtensiones = ["jpeg", "jpg", "png", "webp"];
+
+let fotos = [];
+let fotoActual = 0;
+let inicioToqueX = 0;
+let finToqueX = 0;
+let intervaloAutomatico = null;
 
 const galeria = document.getElementById("galeria");
 const modal = document.getElementById("modal");
@@ -14,13 +15,72 @@ const tituloModal = document.getElementById("tituloModal");
 const cerrarModal = document.getElementById("cerrarModal");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
+const musicaFondo = document.getElementById("musicaFondo");
 
-let fotoActual = 0;
-let inicioToqueX = 0;
-let finToqueX = 0;
+/*
+  Este código busca imágenes con nombres como:
+
+  fotos/f1 (1).jpeg
+  fotos/f1 (2).jpeg
+  fotos/f1 (3).jpeg
+  ...
+  fotos/f1 (100).jpeg
+
+  También prueba .jpg, .png y .webp.
+
+  Si una foto no existe, simplemente la ignora.
+*/
+
+function probarImagen(ruta) {
+  return new Promise((resolve) => {
+    const imagen = new Image();
+
+    imagen.onload = () => {
+      resolve(ruta);
+    };
+
+    imagen.onerror = () => {
+      resolve(null);
+    };
+
+    imagen.src = ruta;
+  });
+}
+
+async function buscarFotos() {
+  const fotosEncontradas = [];
+
+  for (let i = 1; i <= TOTAL_MAXIMO_FOTOS; i++) {
+    let rutaEncontrada = null;
+
+    for (const extension of posiblesExtensiones) {
+      const ruta = `fotos/f1 (${i}).${extension}`;
+      rutaEncontrada = await probarImagen(ruta);
+
+      if (rutaEncontrada) {
+        break;
+      }
+    }
+
+    if (rutaEncontrada) {
+      fotosEncontradas.push({
+        src: rutaEncontrada,
+        titulo: `Foto ${fotosEncontradas.length + 1}`
+      });
+    }
+  }
+
+  fotos = fotosEncontradas;
+  cargarGaleria();
+}
 
 function cargarGaleria() {
   galeria.innerHTML = "";
+
+  if (fotos.length === 0) {
+    galeria.innerHTML = "<p>No hay fotos disponibles.</p>";
+    return;
+  }
 
   fotos.forEach((foto, index) => {
     const card = document.createElement("article");
@@ -49,10 +109,14 @@ function abrirModal(index) {
   fotoActual = index;
   actualizarModal();
   modal.classList.add("active");
+
+  iniciarMusica();
+  iniciarPaseAutomatico();
 }
 
 function cerrarImagen() {
   modal.classList.remove("active");
+  detenerPaseAutomatico();
 }
 
 function actualizarModal() {
@@ -81,9 +145,53 @@ function fotoAnterior() {
   actualizarModal();
 }
 
+function iniciarPaseAutomatico() {
+  detenerPaseAutomatico();
+
+  intervaloAutomatico = setInterval(() => {
+    siguienteFoto();
+  }, 3500);
+}
+
+function detenerPaseAutomatico() {
+  if (intervaloAutomatico !== null) {
+    clearInterval(intervaloAutomatico);
+    intervaloAutomatico = null;
+  }
+}
+
+function reiniciarPaseAutomatico() {
+  iniciarPaseAutomatico();
+}
+
+function iniciarMusica() {
+  if (!musicaFondo) {
+    return;
+  }
+
+  musicaFondo.volume = 0.35;
+
+  musicaFondo.play().catch(() => {
+    console.log("El navegador bloqueó la música hasta que el usuario toque la página.");
+  });
+}
+
 cerrarModal.addEventListener("click", cerrarImagen);
-nextBtn.addEventListener("click", siguienteFoto);
-prevBtn.addEventListener("click", fotoAnterior);
+
+nextBtn.addEventListener("click", () => {
+  siguienteFoto();
+  reiniciarPaseAutomatico();
+});
+
+prevBtn.addEventListener("click", () => {
+  fotoAnterior();
+  reiniciarPaseAutomatico();
+});
+
+imagenModal.addEventListener("click", () => {
+  siguienteFoto();
+  reiniciarPaseAutomatico();
+});
 
 modal.addEventListener("click", (evento) => {
   if (evento.target === modal) {
@@ -102,10 +210,12 @@ document.addEventListener("keydown", (evento) => {
 
   if (evento.key === "ArrowRight") {
     siguienteFoto();
+    reiniciarPaseAutomatico();
   }
 
   if (evento.key === "ArrowLeft") {
     fotoAnterior();
+    reiniciarPaseAutomatico();
   }
 });
 
@@ -130,6 +240,8 @@ function manejarDeslizamiento() {
   } else {
     fotoAnterior();
   }
+
+  reiniciarPaseAutomatico();
 }
 
-cargarGaleria();
+buscarFotos();
