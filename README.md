@@ -26,22 +26,3 @@ Si quieres agregar más fotos, abre `script.js` y agrega otra entrada:
 }
 ```
 
-## Cómo subirlo a GitHub Pages
-
-1. Entra a GitHub.
-2. Crea un repositorio nuevo llamado, por ejemplo, `galeria-qr`.
-3. Déjalo público.
-4. Sube todos estos archivos al repositorio.
-5. Entra a `Settings`.
-6. Entra a `Pages`.
-7. En `Source`, elige `Deploy from a branch`.
-8. En `Branch`, elige `main` y carpeta `/root`.
-9. Guarda.
-
-Después de unos minutos tendrás un link parecido a:
-
-```text
-https://TU_USUARIO.github.io/galeria-qr/
-```
-
-Ese link es el que debes usar para crear el código QR.
