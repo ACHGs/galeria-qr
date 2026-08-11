@@ -1,16 +1,77 @@
 const fotos = [
   {
-    src: "fotos/foto1.jpg",
+    src: "fotos/f1 (1).jpeg",
     titulo: "Foto 1"
   },
   {
-    src: "fotos/foto2.jpg",
+    src: "fotos/f1 (2).jpeg",
     titulo: "Foto 2"
   },
   {
-    src: "fotos/foto3.jpg",
+    src: "fotos/f1 (3).jpeg",
     titulo: "Foto 3"
-  }
+   },
+  {
+    src: "fotos/f1 (4).jpeg",
+     },
+  {
+    src: "fotos/f1 (5).jpeg",
+     },
+  {
+    src: "fotos/f1 (6).jpeg",
+     },
+  {
+    src: "fotos/f1 (7).jpeg",
+     },
+  {
+    src: "fotos/f1 (8).jpeg",
+     },
+  {
+    src: "fotos/f1 (9).jpeg",
+     },
+  {
+    src: "fotos/f1 (10).jpeg",
+     },
+  {
+    src: "fotos/f1 (11).jpeg",
+     },
+  {
+    src: "fotos/f1 (12).jpeg",
+     },
+  {
+    src: "fotos/f1 (13).jpeg",
+     },
+  {
+    src: "fotos/f1 (14).jpeg",
+     },
+  {
+    src: "fotos/f1 (15).jpeg",
+     },
+  {
+    src: "fotos/f1 (16).jpeg",
+     },
+  {
+    src: "fotos/f1 (17).jpeg",
+     },
+  {
+    src: "fotos/f1 (18).jpeg",
+     },
+  {
+    src: "fotos/f1 (19).jpeg",
+     },
+  {
+    src: "fotos/f1 (20).jpeg",
+     },
+  {
+    src: "fotos/f1 (21).jpeg",
+     },
+  {
+    src: "fotos/f1 (22).jpeg",
+     },
+  {
+    src: "fotos/f1 (3).jpeg",
+  },
+    
 ];
 
 const galeria = document.getElementById("galeria");
